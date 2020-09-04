@@ -6,8 +6,9 @@ const possibleMoves = jumps
       ).reduce((acc, curr) => acc.concat(curr), []);
 const lowerBound = 1;
 const upperBound = 8;
-const asciiToNumber = char => char.charCodeAt(0) - 96;
-const numberToAscii = number => String.fromCharCode(number + 96);  
+const aCharCode = 'a'.charCodeAt(0);
+const asciiToNumber = char => char.charCodeAt(0) - (aCharCode - 1);
+const numberToAscii = number => String.fromCharCode(number + (aCharCode - 1));  
 
 const generateAllowedKnightMoves = (position) => {
   const x = asciiToNumber(position.charAt(0));
