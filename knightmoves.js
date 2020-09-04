@@ -44,5 +44,3 @@ function knight(start, finish) {
   }
   throw Error('No solution!');
 }
-
-console.log(knight("a1", "c3"));
