@@ -1,4 +1,4 @@
-const jumps = [1, 2].reduce((acc, curr) => acc.concat([curr, -curr]), []);
+const jumps = [-2, -1, 1, 2];
 const possibleMoves = jumps
   .map(x => jumps
        .filter(y => Math.abs(x) !== Math.abs(y))
