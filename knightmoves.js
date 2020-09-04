@@ -6,17 +6,10 @@ const possibleMoves = jumps
       ).reduce((acc, curr) => acc.concat(curr), []);
 const lowerBound = 1;
 const upperBound = 8;
+const asciiToNumber = char => char.charCodeAt(0) - 96;
+const numberToAscii = number => String.fromCharCode(number + 96);  
 
-
-function asciiToNumber(char) {
-  return char.charCodeAt(0) - 96;
-}
-
-function numberToAscii(number) {
-    return String.fromCharCode(number + 96);
-}  
-
-function generateAllowedKnightMoves(position) {
+const generateAllowedKnightMoves = (position) => {
   const x = asciiToNumber(position.charAt(0));
   const y = Number(position.charAt(1));
   return possibleMoves
@@ -24,7 +17,6 @@ function generateAllowedKnightMoves(position) {
     .filter(coordinates => 
         Object.values(coordinates).every(coordinate => coordinate >= lowerBound && coordinate <= upperBound))
     .map(({x, y}) => `${numberToAscii(x)}${y}`);
-
 }
 
 function knight(start, finish) {
