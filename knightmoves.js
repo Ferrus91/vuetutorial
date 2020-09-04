@@ -19,7 +19,7 @@ const generateAllowedKnightMoves = (position) => {
     .map(({x, y}) => `${numberToAscii(x)}${y}`);
 }
 
-function knight(start, finish) {
+const knight = (start, finish) => {
   let pendingPositions = [{ position: start, searchLength: 0 }];
   const seenPositions = new Set([start]);
   while (pendingPositions.length > 0) {
