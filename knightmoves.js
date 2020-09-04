@@ -1,4 +1,4 @@
-const jumps = [-2, -1, 1, 2];
+const jumps = [1, 2].reduce((acc, curr) => acc.concat([curr, -curr]), []);
 const possibleMoves = jumps
   .map(x => jumps
        .filter(y => Math.abs(x) !== Math.abs(y))
@@ -23,17 +23,15 @@ const generateAllowedKnightMoves = (position) => {
 const knight = (start, finish) => {
   let pendingPositions = [{ position: start, searchLength: 0 }];
   const seenPositions = new Set([start]);
+  if (start === finish) return 0;
   while (pendingPositions.length > 0) {
     const { position, searchLength } = pendingPositions.shift();
-    if (position === finish) {
-        return searchLength;
-    } else {
-        seenPositions.add(position);
-        const newPositions = generateAllowedKnightMoves(position)
-            .filter(position => !seenPositions.has(position))
-            .map(position => ({ position, searchLength: searchLength + 1}));
-        pendingPositions = pendingPositions.concat(newPositions);
-    }
+    seenPositions.add(position);
+    const newPositions = generateAllowedKnightMoves(position)
+        .filter(position => !seenPositions.has(position))
+        .map(position => ({ position, searchLength: searchLength + 1}));
+    if (newPositions.some(newPosition => newPosition.position === finish)) return searchLength + 1;
+    pendingPositions = pendingPositions.concat(newPositions);
   }
   throw Error('No solution!');
 }
