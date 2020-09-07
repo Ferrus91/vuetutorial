@@ -53,7 +53,6 @@ const generateMantissaAndExponent = (num) => {
     if (mostSignificantBitDistance > maxExponentValue) {
       exponent = 0;
       rawMantissa = binaryFractionString.slice(maxExponentValue - 2, binaryFractionString.length);
-      console.log(rawMantissa.length)
     } else {
       exponent = maxExponentValue - (mostSignificantBitDistance + 1);
       rawMantissa = binaryFractionString.slice(mostSignificantBitDistance, binaryFractionString.length);  
